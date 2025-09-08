@@ -2,6 +2,7 @@ import CoinCard from '../components/CoinCard';
 import LimitSelector from '../components/LimitSelector';
 import FilterInput from '../components/FilterInput';
 import SortSelector from '../components/SortSelector';
+import Spinner from '../components/Spinner';
 
 const HomePage = ({coins,filter,setFilter,limit,setLimit, sortBy,setSortBy,loading,error}) => {
     const filteredCoins=coins.filter(coin=>coin.name.toLowerCase().includes(filter.toLowerCase()) || coin.symbol.toLowerCase().includes(filter.toLowerCase()))
@@ -26,7 +27,7 @@ const HomePage = ({coins,filter,setFilter,limit,setLimit, sortBy,setSortBy,loadi
   return (
   <div>
       <h2> Crypto Dashboard</h2>
-      {loading && <p>Loading coins, please wait...</p>}
+      {loading && <Spinner  color='white'/>}
       {error && <div className='error' style={{color:"red"}}>Error:{error}</div>}
       <div className="top-controls">
       <FilterInput filter={filter} onFilterChange={setFilter} />

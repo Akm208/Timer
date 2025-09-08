@@ -3,7 +3,10 @@ const API_URL=import.meta.env.VITE_API_URL;
 import './App.css'
 import {Routes,Route} from 'react-router-dom'
 import HomePage from './pages/home';
-
+import AboutPage from './pages/about';
+import CoinDetailsPage from './pages/coin-details';
+import Header from './components/Header';
+import NotFoundPage from './pages/not-found';
 const App=() => {
   const [coins,setCoins]=useState([]);
   const [loading,setLoading]=useState(true);
@@ -36,6 +39,8 @@ setLoading(false);
   
 
   return (
+    <>
+    <Header />
   <Routes>
     <Route  path='/' element={<HomePage 
     coins={coins}
@@ -49,8 +54,11 @@ setLoading(false);
     error={error}
 
     />} />
+    <Route path='/about' element={<AboutPage />} />
+    <Route path='/coin/:id' element={<CoinDetailsPage />} />
+    <Route path='*' element={<NotFoundPage />} />
   </Routes>
-
+</>
 
 )
 }
